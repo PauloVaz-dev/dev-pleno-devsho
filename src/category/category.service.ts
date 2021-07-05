@@ -1,11 +1,10 @@
 import { Inject, Injectable } from '@nestjs/common';
-import { Category } from './category.entity';
-import { ICategoryRepository } from './repositories/category.interface';
+import { Category } from './infra/typeorm/entities/category.entity';
+import {
+  ICategoryRepository,
+  ICreateCategory,
+} from './repositories/category.repository.interface';
 
-interface Request {
-  name: string;
-  slug: string;
-}
 @Injectable()
 export class CategoryService {
   constructor(
@@ -34,7 +33,7 @@ export class CategoryService {
     return category;
   }
 
-  async create(input: Request): Promise<Category> {
+  async create(input: ICreateCategory): Promise<Category> {
     const { slug, name } = input;
 
     const checkCategoryExists = await this.categoryRepository.findByName(name);
@@ -47,7 +46,7 @@ export class CategoryService {
     return category;
   }
 
-  async update(id: string, input: Request): Promise<Category> {
+  async update(id: string, input: ICreateCategory): Promise<Category> {
     const checkCategoryExists = await this.categoryRepository.findOne(id);
 
     if (!checkCategoryExists) {

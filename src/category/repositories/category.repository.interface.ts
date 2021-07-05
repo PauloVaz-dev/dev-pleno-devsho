@@ -1,4 +1,4 @@
-import { Category } from '../category.entity';
+import { Category } from '../infra/typeorm/entities/category.entity';
 
 export interface ICreateCategory {
   id?: string;

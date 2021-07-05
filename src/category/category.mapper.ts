@@ -1,5 +1,5 @@
-import { Category } from './category.entity';
 import { CategoryCreateInputDTO } from './dto/category-create-inputDTO';
+import { Category } from './infra/typeorm/entities/category.entity';
 
 export class CategoryMapper {
   public static toEntity(input: CategoryCreateInputDTO): Category {

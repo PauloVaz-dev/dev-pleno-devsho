@@ -1,6 +1,5 @@
 import { Field, ObjectType } from '@nestjs/graphql';
-import { Length, Validate } from 'class-validator';
-import { Category } from 'src/category/category.entity';
+
 import { CategoryDTO } from '../../category/dto/categoryDTO';
 import { ProductSlugIsUnique } from '../validations/ProductSlugIsUnique';
 
@@ -18,6 +17,6 @@ export class ProductDTO {
   @Field()
   slug: string;
 
-  @Field()
-  category: CategoryDTO;
+  @Field({ nullable: true })
+  category?: CategoryDTO;
 }

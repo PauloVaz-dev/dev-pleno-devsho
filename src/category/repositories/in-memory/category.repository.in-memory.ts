@@ -1,6 +1,9 @@
 import { Injectable } from '@nestjs/common';
-import { Category } from '../../category.entity';
-import { ICreateCategory, ICategoryRepository } from '../category.interface';
+import { Category } from '../../infra/typeorm/entities/category.entity';
+import {
+  ICategoryRepository,
+  ICreateCategory,
+} from '../category.repository.interface';
 
 @Injectable()
 export class CategoryRepositoryInMemory implements ICategoryRepository {

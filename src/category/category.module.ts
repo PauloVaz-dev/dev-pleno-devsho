@@ -1,10 +1,11 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { Category } from './category.entity';
-import { CategoryRepository } from './category.repository';
+
 import { CategoryResolver } from './category.resolvers';
 import { CategoryService } from './category.service';
-import { CategoryRepositoryInMemory } from './repositories/inMemory/category.repository.inmemory';
+import { Category } from './infra/typeorm/entities/category.entity';
+import { CategoryRepository } from './infra/typeorm/repositories/category.repository';
+import { CategoryRepositoryInMemory } from './repositories/in-memory/category.repository.in-memory';
 
 import { CategorySlugIsUnique } from './validations/CategorySlugIsUnique';
 
@@ -17,7 +18,7 @@ import { CategorySlugIsUnique } from './validations/CategorySlugIsUnique';
     {
       provide: 'CategoryRepositoryInterface',
       useClass:
-        process.env.NODE_ENV === 'test'
+        process.env.NODE_ENV == 'test'
           ? CategoryRepositoryInMemory
           : CategoryRepository,
     },

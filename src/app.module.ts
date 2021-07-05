@@ -17,8 +17,8 @@ import BrandModule from './brand/brand.module';
         type: 'postgres',
         url: configService.get('DATABASE_URL'),
         autoLoadEntities: true,
-        synchronize: false,
-        logging: false,
+        synchronize: true,
+        logging: true,
       }),
     }),
     GraphQLModule.forRoot({
@@ -26,7 +26,7 @@ import BrandModule from './brand/brand.module';
     }),
     CategoryModule,
     UserModule,
-    //ProductModule,
+    ProductModule,
     //BrandModule,
   ],
 })

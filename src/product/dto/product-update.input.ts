@@ -13,7 +13,7 @@ export class ProductUpdateInput {
   @Field()
   slug: string;
 
-  @Field()
+  @Field({ nullable: true })
   category: string;
 
   @Field()

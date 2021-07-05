@@ -2,7 +2,7 @@ import { Field, InputType, ObjectType } from '@nestjs/graphql';
 import { IsNotEmpty, IsString, IsUUID, Length } from 'class-validator';
 
 @InputType()
-export class ProducCreatetInput {
+export class ProductCreateInput {
   @Field()
   @Length(5)
   name: string;
@@ -11,9 +11,7 @@ export class ProducCreatetInput {
   @Length(5)
   slug: string;
 
-  @Field()
-  @IsUUID()
-  @IsNotEmpty()
+  @Field({ nullable: true })
   category: string;
 
   @Field()

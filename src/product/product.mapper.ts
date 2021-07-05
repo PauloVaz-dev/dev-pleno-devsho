@@ -1,12 +1,13 @@
-import { Product } from './product.entity';
-import { ProducCreatetInput } from './dto/product-create.input';
-import { Category } from 'src/category/category.entity';
+import { ProductCreateInput } from './dto/product-create.input';
+
 import { ProductUpdateInput } from './dto/product-update.input';
 import { ProductDTO } from './dto/productDTO';
 import { CategoryDTO } from 'src/category/dto/categoryDTO';
+import { Category } from '../category/infra/typeorm/entities/category.entity';
+import { Product } from './infra/typeorm/entities/product.entity';
 
 export class ProductMapper {
-  public static toEmtity(input: ProducCreatetInput): Product {
+  public static toEntity(input: ProductCreateInput): Product {
     const entity = new Product();
     entity.name = input.name;
     entity.slug = input.slug;
@@ -15,11 +16,10 @@ export class ProductMapper {
     const category = new Category();
     category.id = input.category;
     entity.category = category;
-    console.log(entity);
     return entity;
   }
 
-  public static updatedToEmtity(input: ProductUpdateInput): Product {
+  public static updatedToEntity(input: ProductUpdateInput): Product {
     const entity = new Product();
     entity.id = input.id;
     entity.name = input.name;
@@ -30,7 +30,6 @@ export class ProductMapper {
 
     category.id = input.category;
     entity.category = category;
-    console.log(entity);
 
     return entity;
   }

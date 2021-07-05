@@ -1,6 +1,5 @@
 import { CategoryService } from './category.service';
-import { CategoryCreateInputDTO } from './dto/category-create-inputDTO';
-import { CategoryRepositoryInMemory } from './repositories/inMemory/category.repository.inmemory';
+import { CategoryRepositoryInMemory } from './repositories/in-memory/category.repository.in-memory';
 
 let categoryService: CategoryService;
 let categoryRepository: CategoryRepositoryInMemory;
@@ -42,7 +41,7 @@ describe('Category', () => {
         slug: 'eletro',
       });
 
-      const category = await categoryService.create({
+      await categoryService.create({
         name: 'Eletrodomestico',
         slug: 'eletro',
       });
@@ -98,7 +97,7 @@ describe('Category', () => {
 
   it('should not be able update an nonexistent category', async () => {
     expect(async () => {
-      const category = await categoryService.create({
+      await categoryService.create({
         name: 'Eletrodomestico',
         slug: 'eletro',
       });

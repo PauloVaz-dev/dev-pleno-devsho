@@ -24,7 +24,6 @@ export class CategorySlugIsUnique implements ValidatorConstraintInterface {
   }
 
   defaultMessage(args: ValidationArguments): string {
-    console.log(args);
     return 'Slug must de unique';
   }
 }

@@ -1,11 +1,10 @@
 import { InjectRepository } from '@nestjs/typeorm';
-import { getRepository, Repository } from 'typeorm';
-
-import { Category } from './category.entity';
 import {
   ICategoryRepository,
   ICreateCategory,
-} from './repositories/category.interface';
+} from 'src/category/repositories/category.repository.interface';
+import { Repository } from 'typeorm';
+import { Category } from '../entities/category.entity';
 
 interface Request {
   name: string;
@@ -20,6 +19,9 @@ export class CategoryRepository implements ICategoryRepository {
 
   async find(): Promise<Category[]> {
     const categories = await this.repository.find();
+
+    console.log(categories);
+
     return categories;
   }
 
