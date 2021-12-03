@@ -8,6 +8,6 @@ import { BarndSlugIsUnique } from './validations/BrandSlugIsUnique';
 
 @Module({
   imports: [TypeOrmModule.forFeature([Brand])],
-  providers: [BrandService, BarndResolver, BarndSlugIsUnique, S3],
+  providers: [BarndResolver, BrandService, BarndSlugIsUnique, S3],
 })
 export default class BrandModule {}

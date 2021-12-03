@@ -18,7 +18,7 @@ import { CategorySlugIsUnique } from './validations/CategorySlugIsUnique';
     {
       provide: 'CategoryRepositoryInterface',
       useClass:
-        process.env.NODE_ENV == 'test'
+        process.env.NODE_ENV != 'test'
           ? CategoryRepositoryInMemory
           : CategoryRepository,
     },

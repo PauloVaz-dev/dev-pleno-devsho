@@ -1,4 +1,4 @@
-import { User } from './user.entity';
+/* import { User } from './infra/typeorm/entities/user.entity';
 import { UserCreateInputDTO } from './dto/user-create-inputDTO';
 import { UserDTO } from './dto/userDTO';
 
@@ -12,3 +12,4 @@ export class UserMapper {
     return entity;
   }
 }
+ */

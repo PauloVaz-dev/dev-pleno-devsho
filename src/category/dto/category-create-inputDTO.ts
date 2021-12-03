@@ -6,6 +6,7 @@ import { CategorySlugIsUnique } from '../validations/CategorySlugIsUnique';
 export class CategoryCreateInputDTO {
   @Field({ nullable: true })
   name: string;
+  
 
   @Field()
   slug: string;

@@ -1,0 +1,42 @@
+version: "3.7"
+
+services: 
+    db:
+        image: postgres
+        container_name: devshop-db-container
+        restart: always
+        ports:
+            - 5432:5432
+        environment:
+            - POSTGRES_USER=postgres
+            - POSTGRES_PASSWORD=docker
+            - POSTGRES_DB=devshop
+        volumes:
+            - pgdata:/data/postgres
+    api:
+        build: .
+        image: devshop-api-image
+        container_name: devshop-api-container
+        ports: 
+            - 3000:3000
+        volumes:
+            - .:/usr/app
+        links:
+            - db
+        depends_on:
+            - db
+    front:
+        build: ../devshop-frontend/panel/
+        image: devshop-front-image
+        container_name: devshop-front-container
+        ports: 
+            - 3001:3001
+        volumes:
+            - ../devshop-frontend/panel:/usr/app
+        links:
+            - api
+        depends_on:
+            - api
+volumes:
+    pgdata:
+        driver: local

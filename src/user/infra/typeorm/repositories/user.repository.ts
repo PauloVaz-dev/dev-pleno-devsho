@@ -1,11 +1,11 @@
-import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import {
-  ICategoryRepository,
-  ICreateCategory,
-} from 'src/category/repositories/category.repository.interface';
+  ICreateUser,
+  IUserRepository,
+} from 'src/user/repositories/user.interface';
+import { User } from 'src/user/infra/typeorm/entities/user.entity';
 import { Repository } from 'typeorm';
-import { Category } from '../entities/category.entity';
+import { Injectable } from '@nestjs/common';
 
 interface Request {
   name: string;
@@ -13,22 +13,28 @@ interface Request {
 }
 
 @Injectable()
-export class CategoryRepository implements ICategoryRepository {
+export class UserRepository implements IUserRepository {
   constructor(
-    @InjectRepository(Category)
-    private readonly repository: Repository<Category>,
+    @InjectRepository(User)
+    private readonly repository: Repository<User>,
   ) {}
 
-  async find(): Promise<Category[]> {
+  async find(): Promise<User[]> {
     const categories = await this.repository.find();
+
+    console.log(categories);
+
     return categories;
   }
 
-  async findOne(id: string): Promise<Category> {
-    const category = await this.repository.findOne(id);
+  async findOne(email: string): Promise<User> {
+    console.log('wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww');
+    const category = await this.repository.findOne({
+      where: { email },
+    });
     return category;
   }
-  async findBySlug(slug: string): Promise<Category> {
+  async findBySlug(slug: string): Promise<User> {
     const category = await this.repository.findOne({
       where: {
         slug,
@@ -37,7 +43,7 @@ export class CategoryRepository implements ICategoryRepository {
     return category;
   }
 
-  async findName(name: string): Promise<Category | null> {
+  async findName(name: string): Promise<User | null> {
     const category = await this.repository.findOne({
       where: {
         name,
@@ -54,7 +60,7 @@ export class CategoryRepository implements ICategoryRepository {
     }
   }
 
-  async findByName(name: string): Promise<Category | null> {
+  async findByName(name: string): Promise<User | null> {
     const findInSameName = await this.repository.findOne({
       where: {
         name,
@@ -63,17 +69,16 @@ export class CategoryRepository implements ICategoryRepository {
     return findInSameName || null;
   }
 
-  async create({ name, slug }: Request): Promise<Category> {
+  async create({ name, slug }: Request): Promise<User> {
     const category = this.repository.create({
       name,
-      slug,
     });
 
     await this.repository.save(category);
     return category;
   }
 
-  async save({ id, name, slug }: ICreateCategory): Promise<Category> {
+  async save({ id, name, slug }: ICreateUser): Promise<User> {
     const category = await this.repository.save({
       id,
       name,

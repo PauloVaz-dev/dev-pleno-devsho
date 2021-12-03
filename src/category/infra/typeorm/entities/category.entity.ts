@@ -26,8 +26,8 @@ export class Category {
   @UpdateDateColumn()
   updated_at: Date;
 
-  @OneToMany(() => Product, (product) => product.category)
-  products?: Product[];
+  /* @OneToMany(() => Product, (product) => product.category)
+  products?: Product[]; */
 
   constructor() {
     if (!this.id) this.id = uuidV4();

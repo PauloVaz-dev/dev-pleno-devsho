@@ -1,6 +1,5 @@
 import { Field, InputType } from '@nestjs/graphql';
 import { IsEmail, IsUUID, Validate } from 'class-validator';
-import { UserEmailIsUnique } from '../validations/UserEmailIsUnique';
 
 @InputType()
 export class UserUpdateInputDTO {

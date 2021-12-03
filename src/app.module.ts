@@ -25,9 +25,6 @@ import BrandModule from './brand/brand.module';
       autoSchemaFile: 'schema.gql',
     }),
     CategoryModule,
-    UserModule,
-    ProductModule,
-    //BrandModule,
   ],
 })
 export class AppModule {}
